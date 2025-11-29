@@ -74,7 +74,8 @@ class SelfAttention(nn.Module):
             attn_bias = attn_bias.unsqueeze(0).repeat(query.shape[0], 1, 1)
             attn_bias.masked_fill_((attn_mask>0).logical_not().unsqueeze(1), float("-inf"))
             attn_bias = attn_bias.unsqueeze(1)
-            
+        
+        print("DEBUG attn shapes:", query.shape, key.shape)
         attn_weight = query @ key.transpose(-2, -1) * self.scale
         attn_weight += attn_bias
         attn_weight = torch.softmax(attn_weight, dim=-1)

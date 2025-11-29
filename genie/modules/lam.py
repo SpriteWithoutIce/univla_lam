@@ -7,7 +7,7 @@ from torch import Tensor
 from einops import rearrange, repeat
 from transformers import T5EncoderModel, T5Tokenizer
 
-from latent_action_model.genie.modules.blocks import patchify, unpatchify, SpatioTemporalTransformer, SpatioTransformer, VectorQuantizer, \
+from univla_lam.genie.modules.blocks import patchify, unpatchify, SpatioTemporalTransformer, SpatioTransformer, VectorQuantizer, \
                                                      MVSpatioTemporalTransformer, MVSpatioTransformer
 
 from .dinov2.hub.backbones import dinov2_vitb14_reg
@@ -251,13 +251,16 @@ class ControllableDINOLatentActionModel(nn.Module):
         B, T = videos.shape[:2]
         videos = rearrange(videos, "b T c h w -> (b T) c h w")
         videos = self.dino_transform(videos)
+
         dion_features = self.dino_encoder.forward_features(videos)['x_norm_patchtokens']
         dion_features = rearrange(dion_features, "(b T) l d -> b T l d", T=2)
 
+        print("dion_features =", dion_features.shape)
         action_pad = self.action_latent.expand(B, T, -1, -1)
         padded_patches = torch.cat([action_pad, dion_features], dim=2)
         action_pad_controllable = self.action_latent_controllable.expand(B, T, -1, -1)
         padded_patches = torch.cat([action_pad_controllable, padded_patches], dim=2)
+        print("padded_patches =", padded_patches.shape)
 
         # Encode
         z = self.encoder(padded_patches) 
@@ -291,6 +294,8 @@ class ControllableDINOLatentActionModel(nn.Module):
         }
 
     def forward(self, batch: Dict) -> Dict:
+        print("===> videos input shape:", batch["videos"].shape)
+        print("===> T as detected:", batch["videos"].shape[1])
         # Encode + VQ
         B, T = batch["videos"].shape[:2]
         H, W = batch["videos"].shape[3:5]

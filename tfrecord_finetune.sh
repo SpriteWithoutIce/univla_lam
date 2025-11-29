@@ -22,10 +22,10 @@ python genie/tfrecord_finetune.py "$TFRECORD_PATH" \
   --batch-size "${BATCH_SIZE:-1}" \
   --max-epochs "${MAX_EPOCHS:-5}" \
   --devices "${DEVICES:-1}" \
-  --num-workers "${NUM_WORKERS:-4}" \
+  --num-workers "${NUM_WORKERS:-1}" \
   --frame-interval "${FRAME_INTERVAL:-32}" \
   --subset-fraction "${SUBSET_FRACTION:-1.0}" \
-  --image-size "${IMAGE_SIZE:-224}" \
+  --image-size "${IMAGE_SIZE:-56}" \
   --action-loss-weight "${ACTION_LOSS_WEIGHT:-1.0}" \
   --action-hidden "${ACTION_HIDDEN:-256}" \
   "$@"

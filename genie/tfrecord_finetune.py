@@ -14,6 +14,12 @@ from torch.utils.data import DataLoader, Dataset
 import torchvision.transforms as transforms
 
 
+import sys
+sys.path.insert(0, "/home/linyihan/linyh")
+print("PYTHONPATH:", sys.path)
+import genie
+print("IMPORT GENIE FROM:", genie.__file__)
+
 FEATURE_DESCRIPTION = {
     "steps/is_first": tf.io.VarLenFeature(tf.int64),
     "steps/is_last": tf.io.VarLenFeature(tf.int64),
@@ -206,6 +212,19 @@ if __name__ == "__main__":
     parser.add_argument("--action-loss-weight", type=float, default=1.0)
     parser.add_argument("--action-hidden", type=int, default=256)
 
+    parser.add_argument(
+        "--precision",
+        type=str,
+        default="bf16-mixed",
+        help="Lightning precision flag (e.g., bf16-mixed, 16-mixed)",
+    )
+    parser.add_argument(
+        "--accumulate-grad-batches",
+        type=int,
+        default=1,
+        help="Accumulate gradients over this many batches to reduce memory",
+    )
+
     args = parser.parse_args()
 
     from lightning import Trainer
@@ -240,7 +259,7 @@ if __name__ == "__main__":
         lam_num_heads=12,
         lam_dropout=0.0,
     )
-
+    
     checkpoint = torch.load(args.checkpoint, map_location="cpu")
     missing, unexpected = model.load_state_dict(checkpoint["state_dict"], strict=False)
 
@@ -248,5 +267,26 @@ if __name__ == "__main__":
         print(f"⚠️ Missing keys when loading checkpoint: {missing}")
         print(f"⚠️ Unexpected keys when loading checkpoint: {unexpected}")
 
-    trainer = Trainer(max_epochs=args.max_epochs, devices=args.devices, accelerator="gpu")
+    for name, param in model.lam.named_parameters():
+        # 不冻结 stage-2 可控部分
+        if (
+            "vq_action" in name or
+            "to_codebook" in name or
+            "to_codebook_uncontrol" in name or
+            "action_latent_controllable" in name or
+            "action_up" in name or
+            "action_up_uncontrol" in name or
+            "action_head" in name
+        ):
+            param.requires_grad = True
+        else:
+            param.requires_grad = False
+
+    trainer = Trainer(
+        max_epochs=args.max_epochs, 
+        devices=args.devices, 
+        accelerator="gpu",
+        precision=16,
+        accumulate_grad_batches=args.accumulate_grad_batches,
+        )
     trainer.fit(model, datamodule=datamodule)
