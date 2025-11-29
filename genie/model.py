@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import piq
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import wandb
 from PIL import Image
 from einops import rearrange
@@ -46,6 +48,10 @@ class DINO_LAM(LightningModule):
             optimizer: OptimizerCallable = AdamW,
             make_data_pair: bool = False,
             stage_one_ckpt: str = None,
+            predict_actions: bool = False,
+            action_dim: int = 14,
+            action_head_dim: int = 256,
+            action_loss_weight: float = 1.0,
     ) -> None:
         super(DINO_LAM, self).__init__()
         assert stage in ['stage-1', 'stage-2']
@@ -79,6 +85,18 @@ class DINO_LAM(LightningModule):
         self.log_path = log_path
         self.optimizer = optimizer
         self.make_data_pair = make_data_pair
+        self.predict_actions = predict_actions
+        self.action_loss_weight = action_loss_weight
+
+        self.action_head = None
+        if self.predict_actions:
+            self.action_head = nn.Sequential(
+                nn.Linear(lam_latent_dim * lam_num_latents, action_head_dim),
+                nn.ReLU(),
+                nn.Linear(action_head_dim, action_head_dim),
+                nn.ReLU(),
+                nn.Linear(action_head_dim, action_dim),
+            )
 
         self.save_hyperparameters()
 
@@ -112,12 +130,20 @@ class DINO_LAM(LightningModule):
         index_counts[unique] = counts
         code_usage = (index_counts != 0).float().mean()
 
-        loss_logs = (
+        loss_logs = [
             ("mse_loss", mse_loss),
             ("q_loss", q_loss),
             ("commit_loss", commit_loss),
             ("code_usage", code_usage),
-        )
+        ]
+
+        if self.predict_actions and self.action_head is not None and "action" in batch:
+            z_q_flat = outputs["z_q"].reshape(outputs["z_q"].shape[0], -1)
+            action_pred = self.action_head(z_q_flat)
+            action_target = batch["action"]
+            action_loss = F.mse_loss(action_pred, action_target)
+            loss = loss + self.action_loss_weight * action_loss
+            loss_logs.append(("action_loss", action_loss))
 
         if "indices_uncontrol" in outputs.keys():
             unique, counts = torch.unique(outputs["indices_uncontrol"], return_counts=True)
@@ -125,17 +151,15 @@ class DINO_LAM(LightningModule):
             index_counts[unique] = counts
             uncontrol_code_usage = (index_counts != 0).float().mean()
 
-            loss_logs = (
-                ("mse_loss", mse_loss),
-                ("q_loss", q_loss),
-                ("commit_loss", commit_loss),
-                ("q_loss_uncontrol", q_loss_uncontrol),
-                ("commit_loss_uncontrol", commit_loss_uncontrol),
-                ("code_usage", code_usage),
-                ("code_usage_uncontrol", uncontrol_code_usage),
+            loss_logs.extend(
+                [
+                    ("q_loss_uncontrol", q_loss_uncontrol),
+                    ("commit_loss_uncontrol", commit_loss_uncontrol),
+                    ("code_usage_uncontrol", uncontrol_code_usage),
+                ]
             )
 
-        return outputs, loss, loss_logs
+        return outputs, loss, tuple(loss_logs)
 
 
 
