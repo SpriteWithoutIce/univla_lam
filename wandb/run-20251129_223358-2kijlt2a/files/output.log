@@ -1,0 +1,293 @@
+Traceback (most recent call last):
+  File "/home/linyihan/linyh/univla_lam/genie/tfrecord_finetune.py", line 227, in <module>
+    missing, unexpected = model.load_state_dict(checkpoint["state_dict"], strict=False)
+  File "/home/linyihan/miniconda3/envs/vlaos/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2189, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for DINO_LAM:
+	size mismatch for lam.encoder.ffn.1.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 768]).
+	size mismatch for lam.encoder.ffn.1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.ffn.2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.ffn.2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.0.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.0.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.0.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.0.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.1.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.1.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.1.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.1.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.2.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.2.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.2.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.2.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.3.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.3.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.3.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.3.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.4.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.4.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.4.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.4.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.5.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.5.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.5.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.5.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.6.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.6.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.6.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.6.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.temporal_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.temporal_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.temporal_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.temporal_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.temporal_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.encoder.transformer_blocks.7.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.encoder.transformer_blocks.7.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.encoder.transformer_blocks.7.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm3.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.encoder.transformer_blocks.7.norm3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.to_codebook.weight: copying a param with shape torch.Size([128, 768]) from checkpoint, the shape in current model is torch.Size([32, 512]).
+	size mismatch for lam.to_codebook.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+	size mismatch for lam.to_codebook_uncontrol.weight: copying a param with shape torch.Size([128, 768]) from checkpoint, the shape in current model is torch.Size([32, 512]).
+	size mismatch for lam.to_codebook_uncontrol.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+	size mismatch for lam.vq.codebook.weight: copying a param with shape torch.Size([16, 128]) from checkpoint, the shape in current model is torch.Size([16, 32]).
+	size mismatch for lam.patch_up.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 768]).
+	size mismatch for lam.patch_up.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.action_up.weight: copying a param with shape torch.Size([768, 128]) from checkpoint, the shape in current model is torch.Size([512, 32]).
+	size mismatch for lam.action_up.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.action_up_uncontrol.weight: copying a param with shape torch.Size([768, 128]) from checkpoint, the shape in current model is torch.Size([512, 32]).
+	size mismatch for lam.action_up_uncontrol.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.ffn.0.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.ffn.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.ffn.1.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.ffn.1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.ffn.2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.ffn.2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.0.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.0.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.0.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.0.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.0.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.0.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.0.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.0.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.1.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.1.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.1.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.1.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.1.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.1.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.1.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.1.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.2.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.2.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.2.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.2.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.2.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.2.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.2.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.2.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.3.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.3.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.3.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.3.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.3.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.3.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.3.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.3.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.4.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.4.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.4.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.4.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.4.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.4.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.4.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.4.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.5.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.5.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.5.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.5.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.5.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.5.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.5.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.5.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.6.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.6.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.6.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.6.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.6.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.6.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.6.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.6.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.spatial_attn.to_q.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.7.spatial_attn.to_k.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.7.spatial_attn.to_v.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.7.spatial_attn.to_out.0.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([512, 512]).
+	size mismatch for lam.decoder.transformer_blocks.7.spatial_attn.to_out.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.ffn.0.weight: copying a param with shape torch.Size([3072, 768]) from checkpoint, the shape in current model is torch.Size([2048, 512]).
+	size mismatch for lam.decoder.transformer_blocks.7.ffn.0.bias: copying a param with shape torch.Size([3072]) from checkpoint, the shape in current model is torch.Size([2048]).
+	size mismatch for lam.decoder.transformer_blocks.7.ffn.3.weight: copying a param with shape torch.Size([768, 3072]) from checkpoint, the shape in current model is torch.Size([512, 2048]).
+	size mismatch for lam.decoder.transformer_blocks.7.ffn.3.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.norm1.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.norm1.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.norm2.weight: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.transformer_blocks.7.norm2.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([512]).
+	size mismatch for lam.decoder.out.weight: copying a param with shape torch.Size([768, 768]) from checkpoint, the shape in current model is torch.Size([768, 512]).
+	size mismatch for lam.vq_action.codebook.weight: copying a param with shape torch.Size([16, 128]) from checkpoint, the shape in current model is torch.Size([8, 32]).

@@ -1,0 +1,107 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            1hnvmtbljjm8hcjwe2e7p8lw2r8norco:
+                args:
+                    - /home/linyihan/linyh/datasets/robotwin/lift_pot/1.0.0
+                    - --checkpoint
+                    - /home/linyihan/linyh/univla_lam/checkpoints/lam-stage-2.ckpt
+                    - --batch-size
+                    - "2"
+                    - --max-epochs
+                    - "5"
+                    - --devices
+                    - "1"
+                    - --num-workers
+                    - "4"
+                    - --frame-interval
+                    - "32"
+                    - --subset-fraction
+                    - "0.1"
+                    - --image-size
+                    - "256"
+                    - --action-loss-weight
+                    - "1.0"
+                    - --action-hidden
+                    - "256"
+                codePath: genie/tfrecord_finetune.py
+                codePathLocal: genie/tfrecord_finetune.py
+                cpu_count: 40
+                cpu_count_logical: 80
+                cudaVersion: "12.4"
+                disk:
+                    /:
+                        total: "244466741248"
+                        used: "157430353920"
+                email: 22373442@buaa.edu.cn
+                executable: /home/linyihan/miniconda3/envs/vlaos/bin/python
+                git:
+                    commit: 5676b6afe9b86d3e07b3f76befaeba7fa814f043
+                    remote: git@github.com:SpriteWithoutIce/univla_lam.git
+                gpu: NVIDIA A800 80GB PCIe
+                gpu_count: 4
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A800 80GB PCIe
+                      uuid: GPU-3fe7004c-7674-ad4c-8081-eec7f1363d23
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A800 80GB PCIe
+                      uuid: GPU-ff32fffa-c393-49cc-4c31-084ec25d6bae
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100 80GB PCIe
+                      uuid: GPU-197efbf2-6243-1895-abfd-cda174e10856
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100 80GB PCIe
+                      uuid: GPU-eb8957a4-8c4b-59d3-2a88-defc71785a5a
+                host: zkgy-gpu
+                memory:
+                    total: "540614266880"
+                os: Linux-5.15.0-124-generic-x86_64-with-glibc2.31
+                program: /home/linyihan/linyh/univla_lam/genie/tfrecord_finetune.py
+                python: CPython 3.10.19
+                root: /home/linyihan/linyh/univla_lam
+                startedAt: "2025-11-29T14:33:58.988318Z"
+                writerId: 1hnvmtbljjm8hcjwe2e7p8lw2r8norco
+        m: []
+        python_version: 3.10.19
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 11
+                - 41
+                - 49
+                - 53
+                - 71
+                - 106
+            "2":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 11
+                - 41
+                - 49
+                - 53
+                - 71
+                - 106
+            "3":
+                - 13
+            "4": 3.10.19
+            "5": 0.22.2
+            "6": 4.57.1
+            "10":
+                - 20
+            "12": 0.22.2
+            "13": linux-x86_64

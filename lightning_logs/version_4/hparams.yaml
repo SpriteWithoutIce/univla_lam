@@ -1,0 +1,21 @@
+action_dim: 14
+action_head_dim: 256
+action_loss_weight: 1.0
+image_channels: 3
+lam_dec_blocks: 12
+lam_dropout: 0.0
+lam_enc_blocks: 12
+lam_latent_dim: 128
+lam_model_dim: 768
+lam_num_heads: 12
+lam_num_latents: 16
+lam_patch_size: 14
+log_interval: 1000
+log_path: log_imgs
+make_data_pair: false
+optimizer: !!python/name:torch.optim.adamw.AdamW ''
+predict_actions: true
+stage: stage-2
+stage_one_ckpt: null
+task_name: lam_openx
+vq_beta: 0.25

@@ -74,7 +74,7 @@ class TFRecordTrajectoryDataset(Dataset):
         frame_interval: int = 32,
         subset_fraction: float = 0.1,
         action_dim: int = 14,
-        image_size: int = 256,
+        image_size: int = 224,
     ) -> None:
         super().__init__()
         self.frame_interval = frame_interval
@@ -85,10 +85,15 @@ class TFRecordTrajectoryDataset(Dataset):
 
         dataset = tf.data.TFRecordDataset(list(tfrecord_paths))
         samples: List[Dict] = []
+        num_trajectories = 0
+        total_steps = 0
+
 
         for raw_record in dataset:
             parsed = _parse_example(raw_record)
             num_steps = parsed["steps/is_first"].shape[0]
+            num_trajectories += 1
+            total_steps += num_steps
 
             actions = (
                 parsed["steps/action"].numpy().astype(np.float32).reshape(num_steps, action_dim)
@@ -112,7 +117,7 @@ class TFRecordTrajectoryDataset(Dataset):
                         "instruction": instruction,
                     }
                 )
-
+        print(f"🔥 Loaded {num_trajectories} trajectories with total {total_steps} steps.")
         if subset_fraction < 1.0:
             random.shuffle(samples)
             keep = max(1, int(len(samples) * subset_fraction))
@@ -149,7 +154,7 @@ class TFRecordDataModule(LightningDataModule):
         frame_interval: int = 32,
         subset_fraction: float = 0.1,
         num_workers: int = 4,
-        image_size: int = 256,
+        image_size: int = 224,
     ) -> None:
         super().__init__()
         self.tfrecord_paths = tfrecord_paths
@@ -166,6 +171,7 @@ class TFRecordDataModule(LightningDataModule):
             subset_fraction=self.subset_fraction,
             image_size=self.image_size,
         )
+        
 
     def train_dataloader(self) -> DataLoader:
         return DataLoader(
@@ -196,7 +202,7 @@ if __name__ == "__main__":
     parser.add_argument("--num-workers", type=int, default=4)
     parser.add_argument("--frame-interval", type=int, default=32)
     parser.add_argument("--subset-fraction", type=float, default=0.1)
-    parser.add_argument("--image-size", type=int, default=256)
+    parser.add_argument("--image-size", type=int, default=224)
     parser.add_argument("--action-loss-weight", type=float, default=1.0)
     parser.add_argument("--action-hidden", type=int, default=256)
 
@@ -206,6 +212,7 @@ if __name__ == "__main__":
     from genie.model import DINO_LAM
 
     tfrecord_paths = _collect_tfrecord_paths(args.tfrecord)
+    print(f"🔥 Found {len(tfrecord_paths)} TFRecord files. {tfrecord_paths}")
 
     datamodule = TFRecordDataModule(
         tfrecord_paths=tfrecord_paths,
@@ -215,14 +222,31 @@ if __name__ == "__main__":
         num_workers=args.num_workers,
         image_size=args.image_size,
     )
+    datamodule.setup()
+    print(f"🔥 Dataset size: {len(datamodule.dataset)}")
 
-    model = DINO_LAM.load_from_checkpoint(
-        args.checkpoint,
+    model = DINO_LAM(
         stage="stage-2",
         predict_actions=True,
         action_loss_weight=args.action_loss_weight,
         action_head_dim=args.action_hidden,
+        image_channels=3,
+        lam_model_dim=768,
+        lam_latent_dim=128,
+        lam_num_latents=16,
+        lam_patch_size=14,
+        lam_enc_blocks=12,
+        lam_dec_blocks=12,
+        lam_num_heads=12,
+        lam_dropout=0.0,
     )
+
+    checkpoint = torch.load(args.checkpoint, map_location="cpu")
+    missing, unexpected = model.load_state_dict(checkpoint["state_dict"], strict=False)
+
+    if missing or unexpected:
+        print(f"⚠️ Missing keys when loading checkpoint: {missing}")
+        print(f"⚠️ Unexpected keys when loading checkpoint: {unexpected}")
 
     trainer = Trainer(max_epochs=args.max_epochs, devices=args.devices, accelerator="gpu")
     trainer.fit(model, datamodule=datamodule)

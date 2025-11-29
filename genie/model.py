@@ -7,7 +7,7 @@ import piq
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import wandb
+import swanlab
 from PIL import Image
 from einops import rearrange
 from lightning import LightningModule
@@ -17,7 +17,7 @@ from accelerate import PartialState
 
 OptimizerCallable = Callable[[Iterable], Optimizer]
 
-from latent_action_model.genie.modules import UncontrolledDINOLatentActionModel, ControllableDINOLatentActionModel
+from genie.modules import UncontrolledDINOLatentActionModel, ControllableDINOLatentActionModel
 import logging
 logging.basicConfig(format='%(message)s', level=logging.INFO)
 
@@ -103,7 +103,7 @@ class DINO_LAM(LightningModule):
         self.task_name = task_name
         self.distributed_state = PartialState()
         if self.distributed_state.is_main_process:
-            wandb.init(name=task_name, reinit=True)
+            swanlab.init(name=task_name, reinit=True)
 
     def shared_step(self, batch: Dict) -> Tuple:
         # batch: keys['videos', 'task_instruction', 'action', 'dataset_names']
@@ -179,7 +179,7 @@ class DINO_LAM(LightningModule):
         )
 
         if self.distributed_state.is_main_process:
-            wandb.log({**{"train_loss": loss}, **{f"train/{k}": v for k, v in aux_losses}})
+            swanlab.log({**{"train_loss": loss}, **{f"train/{k}": v for k, v in aux_losses}})
 
         return loss
 
