@@ -1,7 +1,9 @@
 import argparse
+import glob
 import io
 import random
-from typing import Dict, List, Optional
+from pathlib import Path
+from typing import Dict, Iterable, List, Optional
 
 import numpy as np
 import tensorflow as tf
@@ -27,14 +29,36 @@ FEATURE_DESCRIPTION = {
     "steps/language_instruction": tf.io.VarLenFeature(tf.string),
     "episode_metadata/file_path": tf.io.FixedLenFeature([], tf.string),
 }
-
-
 def _parse_example(example_proto: tf.Tensor) -> Dict:
     example = tf.io.parse_single_example(example_proto, FEATURE_DESCRIPTION)
     for key, value in example.items():
         if isinstance(value, tf.SparseTensor):
             example[key] = tf.sparse.to_dense(value)
     return example
+
+
+def _collect_tfrecord_paths(raw_path: str) -> List[str]:
+    """Expand a TFRecord directory, glob pattern, or file into concrete paths."""
+
+    path = Path(raw_path)
+    if path.is_dir():
+        tfrecord_files = sorted(
+            str(p) for p in path.glob("*.tfrecord*") if p.is_file()
+        )
+        if not tfrecord_files:
+            raise ValueError(f"No TFRecord files found in directory: {raw_path}")
+        return tfrecord_files
+
+    if any(token in raw_path for token in ["*", "?", "["]):
+        tfrecord_files = sorted(glob.glob(raw_path))
+        if not tfrecord_files:
+            raise ValueError(f"Glob did not match any files: {raw_path}")
+        return tfrecord_files
+
+    if not path.exists():
+        raise FileNotFoundError(f"TFRecord path does not exist: {raw_path}")
+
+    return [str(path)]
 
 
 def _bytes_to_pil(image_bytes: bytes) -> Image.Image:
@@ -46,7 +70,7 @@ def _bytes_to_pil(image_bytes: bytes) -> Image.Image:
 class TFRecordTrajectoryDataset(Dataset):
     def __init__(
         self,
-        tfrecord_path: str,
+        tfrecord_paths: Iterable[str],
         frame_interval: int = 32,
         subset_fraction: float = 0.1,
         action_dim: int = 14,
@@ -59,7 +83,7 @@ class TFRecordTrajectoryDataset(Dataset):
             [transforms.Resize((image_size, image_size)), transforms.ToTensor()]
         )
 
-        dataset = tf.data.TFRecordDataset(tfrecord_path)
+        dataset = tf.data.TFRecordDataset(list(tfrecord_paths))
         samples: List[Dict] = []
 
         for raw_record in dataset:
@@ -120,7 +144,7 @@ class TFRecordTrajectoryDataset(Dataset):
 class TFRecordDataModule(LightningDataModule):
     def __init__(
         self,
-        tfrecord_path: str,
+        tfrecord_paths: List[str],
         batch_size: int = 2,
         frame_interval: int = 32,
         subset_fraction: float = 0.1,
@@ -128,7 +152,7 @@ class TFRecordDataModule(LightningDataModule):
         image_size: int = 256,
     ) -> None:
         super().__init__()
-        self.tfrecord_path = tfrecord_path
+        self.tfrecord_paths = tfrecord_paths
         self.batch_size = batch_size
         self.frame_interval = frame_interval
         self.subset_fraction = subset_fraction
@@ -137,7 +161,7 @@ class TFRecordDataModule(LightningDataModule):
 
     def setup(self, stage: Optional[str] = None) -> None:
         self.dataset = TFRecordTrajectoryDataset(
-            self.tfrecord_path,
+            self.tfrecord_paths,
             frame_interval=self.frame_interval,
             subset_fraction=self.subset_fraction,
             image_size=self.image_size,
@@ -155,7 +179,11 @@ class TFRecordDataModule(LightningDataModule):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Fine-tune LAM on TFRecord trajectories")
-    parser.add_argument("tfrecord", type=str, help="Path to TFRecord file")
+    parser.add_argument(
+        "tfrecord",
+        type=str,
+        help="Path to a TFRecord file, directory of TFRecords, or glob pattern",
+    )
     parser.add_argument(
         "--checkpoint",
         type=str,
@@ -177,8 +205,10 @@ if __name__ == "__main__":
     from lightning import Trainer
     from genie.model import DINO_LAM
 
+    tfrecord_paths = _collect_tfrecord_paths(args.tfrecord)
+
     datamodule = TFRecordDataModule(
-        tfrecord_path=args.tfrecord,
+        tfrecord_paths=tfrecord_paths,
         batch_size=args.batch_size,
         frame_interval=args.frame_interval,
         subset_fraction=args.subset_fraction,

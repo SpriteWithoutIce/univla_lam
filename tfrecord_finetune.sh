@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEFAULT_DATA_ROOT="/home/linyihan/linyh/datasets/robotwin/lift_pot/1.0.0"
+
+if [ $# -lt 1 ]; then
+  TFRECORD_PATH="${DATA_ROOT:-$DEFAULT_DATA_ROOT}"
+else
+  TFRECORD_PATH="$1"
+  shift
+fi
+
+if [ ! -e "$TFRECORD_PATH" ]; then
+  echo "TFRecord path not found: $TFRECORD_PATH" >&2
+  exit 1
+fi
+
+python genie/tfrecord_finetune.py "$TFRECORD_PATH" \
+  --checkpoint /home/linyihan/linyh/univla_lam/checkpoints/lam-stage-2.ckpt \
+  --batch-size "${BATCH_SIZE:-2}" \
+  --max-epochs "${MAX_EPOCHS:-5}" \
+  --devices "${DEVICES:-1}" \
+  --num-workers "${NUM_WORKERS:-4}" \
+  --frame-interval "${FRAME_INTERVAL:-32}" \
+  --subset-fraction "${SUBSET_FRACTION:-0.1}" \
+  --image-size "${IMAGE_SIZE:-256}" \
+  --action-loss-weight "${ACTION_LOSS_WEIGHT:-1.0}" \
+  --action-hidden "${ACTION_HIDDEN:-256}" \
+  "$@"
